@@ -10,18 +10,18 @@
  */
 
 // load math.js
-var Math = require('mathjs');
+var math = require('mathjs');
 //===================================================
 // Global Variables
 const NUM_INITIAL_DEVICES = 5;
-var devices; // an array of devices on network
+var devices = []; // an array of devices on network
 //===================================================
 
 //===================================================
 // Manage devices on network
 //===================================================
 function add_device(id, devices){
-		devices.push_back(id);
+		devices.push(id);
 		return devices;
 }
 
@@ -39,7 +39,7 @@ function remove_device(id, devices){
 //===================================================
 // Average the collected temps
 function average_temp(temps) {
-		return Math.mean(temps);
+		return math.mean(temps);
 }
 
 // Get temp from one device
@@ -58,20 +58,20 @@ function get_temp(device_id){
 		// DEBUGGING
 		// Return random temp for testing
 		var max = 40;
-	    var min = 10;	
-		temp = Math.random() * (max - min) + min;
+		var min = 10;
+		temp = math.random() * (max - min) + min;
 		// END DEBUGGING
-		return temp
+		return temp;
 }
 
 // Collect temp data from all devices
 function collect_data(devices) {
 		// Store all temp readings from devices
-		var temps;
+		var temps = [];
 
 		// Loop through the devices
-		for (var i = 0; i < devices.length(); i++) {
-			temps.push_back(get_temp(devices[i]));
+		for (var i = 0; i < devices.length; i++) {
+			temps.push(get_temp(devices[i]));
 		}
 
 		// Return averaged temps
