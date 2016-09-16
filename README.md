@@ -30,3 +30,4 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 - [ ] figure out a scalable system-level architecture for communication between the xbees and the command receiver (shoulder-taps, flooding the channel with data, etc) 
 - [ ] Write the code for processing the incoming data
 - [ ] Prepare the presentation docs
+- [ ] Make schematic/diagram
