@@ -1,3 +1,5 @@
+// This code was adopted from https://learn.adafruit.com/thermistor/using-a-thermistor
+
 // which analog pin to connect
 #define THERMISTORPIN A0         
 // resistance at 25 degrees C
