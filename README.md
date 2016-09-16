@@ -31,3 +31,16 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 - [ ] Write the code for processing the incoming data
 - [ ] Prepare the presentation docs
 - [ ] Make schematic/diagram
+
+- [ ] Parse data string
+- [ ] String>>int
+- [ ] String>>float
+-  Error checking:
+- [ ] 4 temps from each arduino
+- [ ] missing temp node -Extra
+- [ ]  Decimal point + 2 values
+-  Arduino:
+- [ ] Loop delay
+- [ ] 4th ID
+- [ ] 3rd data
+
