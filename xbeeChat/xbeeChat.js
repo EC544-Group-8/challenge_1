@@ -2,9 +2,6 @@
 // AND https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-communication-with-node-js/
 
 var SerialPort = require("serialport");
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
 var portName = process.argv[2],
 portConfig = {
@@ -14,39 +11,16 @@ portConfig = {
 var sp;
 sp = new SerialPort.SerialPort(portName, portConfig);
 
-// -------------------------------
-// For preparing localhost
-// -------------------------------
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-  });
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-    sp.write(msg + "\n");
-  });
-});
-
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
-
 // When the controller xBee's serialport is filled, parse the data
 sp.on("open", function () {
   console.log('open');
   sp.on('data', function(data) {
     //console.log('data received: ' + data);
-    io.emit("chat message", "An XBee says: " + data);
     // Parsing
     parse_data(data);
   });
 });
 
-//==========================================================================
 var ping_index = 0;
 var avg = -500.00;
 var NUM_SENSORS = 4;

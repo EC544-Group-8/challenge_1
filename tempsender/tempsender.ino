@@ -1,4 +1,5 @@
 // This code was adopted from https://learn.adafruit.com/thermistor/using-a-thermistor
+// And is used on each of the sensors
 
 // which analog pin to connect
 #define THERMISTORPIN A0
