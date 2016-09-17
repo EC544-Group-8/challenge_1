@@ -30,7 +30,7 @@ void loop(void) {
   float temp = getTemp();
   xbeeSerial.print("1:");
   xbeeSerial.println(temp);
-  delay(50);
+  delay(1000);
 }
 
 float getTemp() {
