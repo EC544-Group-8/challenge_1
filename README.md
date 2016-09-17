@@ -19,8 +19,8 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 - [ ] Evidence of scalability to 1000s of devices
 
     - [ ] use dynamic data structure for list of devices on network
+    - [ ] methods to add/drop as mentioned below
     
-	- [ ] methods to add/drop as mentioned below
 - [ ] Robustness to added or dropped devices
 
 	- [ ] function to add device
