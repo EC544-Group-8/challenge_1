@@ -90,13 +90,19 @@ function calc_avg(allData){
   
 }
 
+// send command and receive data from arduinos
+function get_data(){
+    // Send the command to all arduinos
+	sp.write("send");
+}
 // Print the instantaneous average
 function print_data(avgTemp){
     console.log('The Average is:   ' + avgTemp);
 }
 
-// Every 2 seconds, run the print_data
+// Every 2 seconds, and run the print_data
 setInterval(function(){
+    get_data();
     print_data(avg);
 }, 2000);
 
