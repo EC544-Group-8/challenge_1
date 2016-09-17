@@ -15,10 +15,14 @@
 #define SERIESRESISTOR 9100
 
 #include <SoftwareSerial.h>
-SoftwareSerial xbeeSerial(2, 3);
 #include "string.h"
 
-#define SEND "send"
+SoftwareSerial xbeeSerial(2, 3);
+
+
+#define SEND 's'
+#define DEVICE_ID 3
+char devices[] = {'x', 'a', 'b', 'c', 'd'};
 
 int samples[NUMSAMPLES];
 
@@ -27,21 +31,26 @@ void setup(void) {
   xbeeSerial.begin(9600);
   analogReference(EXTERNAL);
 }
+float getTemp();
 
 void loop(void) {
   float temp = getTemp();
-  String input = "";
+  char input = devices[0];
   while(xbeeSerial.available() > 0){
     // get input one character at a time
-    input += (char)xbeeSerial.read(); 
-    delay(5);
-
-    if(input == SEND){
-      xbeeSerial.print("1:");
+    input = (char)xbeeSerial.read(); 
+    Serial.println(input);
+   
+    if(input == devices[DEVICE_ID]){
+      Serial.println("sending");
+      xbeeSerial.print(DEVICE_ID);
+      xbeeSerial.print(":");
       xbeeSerial.println(temp);
-	}
+      input = 'x';
   }
+ }
 }
+
 
 float getTemp() {
   uint8_t i;
