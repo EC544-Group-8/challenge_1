@@ -17,8 +17,9 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 
     - [ ] temperature warnings if too hot/cold
 - [ ] Evidence of scalability to 1000s of devices
-j
+
     - [ ] use dynamic data structure for list of devices on network
+    
 	- [ ] methods to add/drop as mentioned below
 - [ ] Robustness to added or dropped devices
 
