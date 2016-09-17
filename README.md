@@ -6,10 +6,10 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 ### Required Elements
 
 - [X] Measures temperature at each device
-- [ ] Sends data to base 
-- [ ] Computes average
+- [X] Sends data to base 
+- [X] Computes average
 - [X] Different program at base vs at wireless device
-- [ ] Engineering units displayed
+- [X] Engineering units displayed
 
 ### Qualitative Elements
 
@@ -19,8 +19,8 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 - [ ] Evidence of scalability to 1000s of devices
 
     - [ ] use dynamic data structure for list of devices on network
+    - [ ] methods to add/drop as mentioned below
     
-	- [ ] methods to add/drop as mentioned below
 - [ ] Robustness to added or dropped devices
 
 	- [ ] function to add device
@@ -29,23 +29,3 @@ Create a system that will continuously measure (0.5 Hz) temperature in five loca
 - [ ] Demonstrated effort to calibrate sensors
 
 	- [ ] Ice water, boiling water, and room temp test (wrap thermistors in something waterproof)
-
-
-### TODO
-- [ ] figure out a scalable system-level architecture for communication between the xbees and the command receiver (shoulder-taps, flooding the channel with data, etc) 
-- [ ] Write the code for processing the incoming data
-- [ ] Prepare the presentation docs
-- [ ] Make schematic/diagram
-
-- [ ] Parse data string
-- [ ] String>>int
-- [ ] String>>float
--  Error checking:
-- [ ] 4 temps from each arduino
-- [ ] missing temp node -Extra
-- [ ]  Decimal point + 2 values
--  Arduino:
-- [ ] Loop delay
-- [ ] 4th ID
-- [ ] 3rd data
-
