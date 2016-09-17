@@ -16,7 +16,9 @@
 
 #include <SoftwareSerial.h>
 SoftwareSerial xbeeSerial(2, 3);
-#include <elapsedMillis.h>
+#include "string.h"
+
+#define SEND "send"
 
 int samples[NUMSAMPLES];
 
@@ -28,9 +30,17 @@ void setup(void) {
 
 void loop(void) {
   float temp = getTemp();
-  xbeeSerial.print("1:");
-  xbeeSerial.println(temp);
-  delay(1000);
+  String input = "";
+  while(xbeeSerial.available() > 0){
+    // get input one character at a time
+    input += (char)xbeeSerial.read(); 
+    delay(5);
+
+    if(input == SEND){
+      xbeeSerial.print("1:");
+      xbeeSerial.println(temp);
+	}
+  }
 }
 
 float getTemp() {
