@@ -5,7 +5,7 @@ var SerialPort = require("serialport");
 
 var portName = process.argv[2],
 portConfig = {
-	baudRate: 9600,
+	baudRate: 115200,
 	parser: SerialPort.parsers.readline("\n")
 };
 var sp;
@@ -31,9 +31,13 @@ var measurement = {
   '3': '-500.00',
   '4': '-500.00'
 };
+var recieved=true;
+//var timeout = 5;
+var timeout = [5 , 5 , 5 , 5];
 
 // Parse the incoming transmission from a particular node
 function parse_data(dataString) {
+	//console.log('parsing:' + dataString);
   // Format is "2:23.15"
   var arrayOfStrings = dataString.split(':');
   
@@ -42,9 +46,10 @@ function parse_data(dataString) {
     var id = arrayOfStrings[0];
     var temp = arrayOfStrings[1];
     
-    // console.log('parse data id: ' + id + ' ' + temp);
+     console.log('parse data id: ' + id + ' ' + temp);
     // Update the measurement object at that ID
     measurement[id] = temp;
+    recieved=true;
     
   }
 }
@@ -76,24 +81,41 @@ function calc_avg(allData){
 // send command and receive data from arduinos
 function get_data(index){
   // Send the command to an arduino
+  	recieved=false;
 	sp.write(pings[index]);
+	console.log(pings[index]);
 }
 
 // Print the instantaneous average
 function print_data(avgTemp){
-    console.log('The Average is:   ' + avgTemp.toFixed(2) + ' degrees Celsius');
+   // console.log('The Average is:   ' + avgTemp.toFixed(2) + ' degrees Celsius');
 }
 
 // Every .3 seconds, and ping one of the arduinos
 setInterval(function(){
-    get_data(ping_index);
-    if(++ping_index > 3) {
-      ping_index = 0;
-    }
+    //get_data(ping_index);
+    //if(++ping_index > 3) {
+    //  ping_index = 0;
+
+   // if (recieved || timeout-- == 0) {
+    //get_data(3);
+    //timeout = 6;
+	//			}
+
+
+    //}
+
+   if(++ping_index > 3) {
+     ping_index = 0;
+ 	}
+    if (recieved || timeout[ping_index]-- == 0) {
+    	get_data(ping_index);
+    	timeout[ping_index] = 10;
+		}
 }, 300);
 
 // Every 2 seconds, and run the print_data
 setInterval(function(){
     calc_avg(measurement);
     print_data(avg);
-}, 2000);
+}, 5000);
